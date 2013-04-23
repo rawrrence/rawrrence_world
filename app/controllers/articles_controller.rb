@@ -1,4 +1,4 @@
-class ArticlessController < ApplicationController
+class ArticlesController < ApplicationController
   
   def index
     @articles = article.alphabetical.paginate(:page => params[:page]).per_page(10)
