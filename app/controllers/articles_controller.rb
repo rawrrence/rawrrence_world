@@ -1,27 +1,27 @@
 class ArticlesController < ApplicationController
   
   def index
-    @articles = article.alphabetical.paginate(:page => params[:page]).per_page(10)
+    @articles = Article.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
 
   def show
-    @article = article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
 
   def new
-    @article = article.new
+    @article = Article.new
   end
 
 
   def edit
-    @article = article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
 
   def create
-    @article = article.new(params[:article])
+    @article = Article.new(params[:article])
     if @article.save
       flash[:notice] = 'article was successfully created.'
       redirect_to article_path(@article)
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
 
 
   def update
-    @article = article.find(params[:id])
+    @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
       flash[:notice] = 'article was successfully updated.'
       redirect_to article_path(@article)
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
 
 
   def destroy
-    @article = article.find(params[:id])
+    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
   end
